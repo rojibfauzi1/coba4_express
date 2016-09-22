@@ -1,0 +1,18 @@
+<div class="container" >
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Kelompok</th>
+					<th>Jenis</th>
+					<th>status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in daftar | filter: hasil">
+					<td>{{data.kelompok}}</td>
+					<td>{{data.jenis}}</td>
+					<td>{{data.status}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
