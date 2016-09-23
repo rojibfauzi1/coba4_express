@@ -38,7 +38,31 @@ test.directive('tableTitle',function(){
 						];
 		}
 	}
-})
+});
+
+//factory
+/*test.factory('factoryOrang',function($http){
+	var factoryOrang = {};
+
+	factoryOrang.getOrang =function(){
+				return $http.get('data.php');
+	}
+	return factoryOrang;
+});
+
+test.directive('tableTitle',function(){
+	return{
+		restrict 	: 'A',
+		templateUrl : 'table',
+		controller	: function($scope,factoryOrang){
+						factoryOrang.getOrang().success(function(hasil){ //factory => sperti fungsi di ambil dr atas
+							$scope.data = hasil;						//utk membuat modular
+						});
+		}
+	}
+});*/
+
+
 
 //isi table
 /*test.controller("AngularCtrl",function($scope){
@@ -55,7 +79,7 @@ test.config(function($routeProvider){
 	
 	$routeProvider
 	.when("/tambahinfo",{
-		templateUrl : '/form.ejs',
+		templateUrl : 'public/form.ejs',
 		controller 	: 'add'
 	})
 	.when("/coba",{

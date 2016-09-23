@@ -1,5 +1,7 @@
 var express = require("express");
 var path = require("path");
+var mongojs = require('mongojs');
+var db = mongojs('contactlist',['contactlist']); //mongojs('connectionString',['collection'])
 
 var app = express();
 
@@ -31,17 +33,22 @@ app.get("/table",function(req,res){
 });
 
 //server static files
-app.use(express.static('public'));
+/*app.use(express.static('public'));*/
 /*app.use(app.router);*/
-app.use(function(req,res){
+/*app.use(function(req,res){
 	res.sendfile(__dirname+'/public/index.html');
 console.log(__dirname+'/public/index.html');
-})
+})*/
 //routes
 /*app.use("/*",function(req,res){
 	res.sendfile(__dirname+'/public/index.html');
 });
 */
+app.get("/tambahinfo",function(req,res,next){
+	res.sendfile('index.html',{
+		root : __dirname+'/public'
+	});
+});
 
 app.get("/contactlist",function(req,res){
 	console.log("I received GET a respond");
