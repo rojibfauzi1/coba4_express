@@ -50,7 +50,7 @@ app.get("/tambahinfo",function(req,res,next){
 	});
 });
 
-app.get("/contactlist",function(req,res){
+/*app.get("/contactlist",function(req,res){
 	console.log("I received GET a respond");
 
 	person1 = {
@@ -73,8 +73,15 @@ app.get("/contactlist",function(req,res){
 
 	var contactlist = [person1,person2,person3];
 	res.json(contactlist);
-});
+});*/
 
+app.get("/contactlist",function(req,res){
+	db.contactlist.find(function(err,docs){
+		if(err) throw err;
+		console.log(docs);
+		res.json(docs);
+	})
+});
 
 app.listen(app.get('port'),function(){
 	console.log("Server is running on port "+app.get('port'));
