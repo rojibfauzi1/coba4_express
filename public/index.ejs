@@ -18,13 +18,24 @@
 					<th>Name</th>
 					<th>Email</th>
 					<th>Address</th>
+					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="contact in contactlist | filter: hasil | orderBy:'name'">
+				<tr>
+					<td><input type="text" class="form-controll" ng-model="contact.name"></td>
+					<td><input type="text" class="form-control" ng-model="contact.email"></td>
+					<td><input type="text" class="form-control" ng-model="contact.address"></td>
+					<td><button class="btn btn-primary" ng-click="addContact()">Add Contact</button></td>
+					<td><button class="btn btn-info" ng-click="update()">Update Contact</button>&nbsp;&nbsp;
+					<button class="btn btn-info" ng-click="clear()">Clear</button></td>
+				</tr>
+				<tr ng-repeat="contact in contactlist | filter: hasil | orderBy:'-_id'">
 					<td>{{contact.name | uppercase}}</td>
 					<td>{{contact.email | lowercase}}</td>
 					<td>{{contact.address}}</td>
+					<td><button class="btn btn-danger" ng-click="remove(contact._id)">Remove</button></td>
+					<td><button class="btn btn-warning" ng-click="edit(contact._id)">Edit</button></td>
 				</tr>
 			</tbody>
 		</table>

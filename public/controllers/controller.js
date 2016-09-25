@@ -1,10 +1,49 @@
 function AppCtrl($scope,$http){
 	console.log("This is test function AppCtrl");
 
-	$http.get("/contactlist").success(function(response){
-		console.log("i got a request received");
-		$scope.contactlist = response;
-	});
+var refresh = function(){ //sama saja fungsi refresh()
+		$http.get("/contactlist").success(function(response){
+			console.log("i got a request received");
+			$scope.contactlist = response;
+			$scope.contact = ""; //membuat tulisan mjd kosong kembali
+		});
+	};
+
+	refresh();
+
+	$scope.addContact = function(){ //addContact => sesuai dg ng-click di index
+		console.log($scope.contact);
+		$http.post("/contactlist",$scope.contact).success(function(response){
+			console.log(response);
+			refresh();
+		});
+	};
+
+	$scope.remove = function(id){  
+		console.log(id)
+		$http.delete("/contactlist/"+id).success(function(response){
+			refresh();
+		});
+	}
+
+	$scope.edit = function(id){
+		/*console.log(id);*/
+		
+		$http.get("/contactlist/"+id).success(function(response){
+			$scope.contact = response;
+		})
+	}
+
+	$scope.update = function(){
+		console.log($scope.contact._id); //di ambil dr post id
+		$http.put("/contactlist/"+$scope.contact._id,$scope.contact).success(function(response){
+			refresh();								//sama seperti yg post, $scope.contact diambil dr post contact semua
+		})
+	}
+
+	$scope.clear = function(){
+		$scope.contact = "";
+	}
 
 	/*$scope.contactlist = contactlist;*/
 }

@@ -18,7 +18,9 @@
   "homepage": "https://github.com/rojibfauzi1/coba4_express#readme",
   "dependencies": {
     "angular": "^1.5.8",
+    "body-parser": "^1.15.2",
     "ejs": "^2.5.2",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0"
   }
 }
